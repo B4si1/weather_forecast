@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Get accurate weather info for any city with our lightwieght weather App.">
+  <meta name="keywords" content="basil, weather, netlify, weather app, weather forecast,, current weather, city weather, weather information,">
+  <link rel="icon" href="images/leaf.png" type="image/x-icon">
+  <meta name="Basil" content="Basil Bombers">
+  <meta property="og:title" content="Weather App">
+  <meta property="og:description" content="Get accurate weather info for any city with our lightwieght weather App.">
+  <meta property="og:image" content="https://basilweatherapp.netlify.app/images/thumb.jpg">
+  <meta property="og:url" content="https://basilweatherapp.netlify.app">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basil | Weather App</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/sunmoon.css">
+</head>
+<body id="body-main">
+  <div class="container">
+    <h1 class="container-header"> Weather App </h1>
+    
+   
+   <div class="dropdown">
+      <input id="cityInput" type="text" placeholder="Enter a city ...">
+      <button id="submitButton"><img class="src-img" src="./images/search.png" alt="Search"></button>
+      <ul id="cityOutput" class="dropdown-content"></ul>
+    </div>
+    
+    
+    <div id="weatherInfo"></div>
+    
+    
+    
+    <div class="footer">
+      <span class="basil"><h4>🌎</h4></span> 
+      <span class="basil"><h4>🍀</h4></span> 
+      <span class="basil"><h4>🌎</h4></span> 
+      <span class="basil"><h4>🍀</h4></span> 
+      <span class="basil"><h4>🌎</h4></span> 
+      <a href="https://www.weatherapi.com/" title="Free Weather API" target="_blank"><img class="weather-api-img" src='//cdn.weatherapi.com/v4/images/weatherapi_logo.png' alt="Weather data by WeatherAPI.com"></a>
+    </div>
+  </div>
+
+  <div class="moon-container">
+    <div class="moon" id="moon">
+        <div class="crater"></div>
+        <div class="crater"></div>
+        <div class="crater"></div>
+        <div class="crater"></div>
+    </div>
+  </div>
+
+  <div class="sun-container">
+    <div class="sun" id="sun">
+        <div class="sun-face"></div>
+    </div>
+
+
+  <div id="popup"><h2>Enter a valid city</h2> <span class="close-popup">&times;</span></div>
+  <div id="fade"></div>
+  <script type="module" src="./js/weatherscript.js"></script>
+</body>
+</html>
+
+
+

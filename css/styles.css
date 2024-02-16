@@ -1,0 +1,246 @@
+/* Global Styles */
+:root {
+  --main-bg-color: white;
+  --secondary-bg-color: grey;
+  --border-color: yellowgreen;
+  --popup-bg-color: aliceblue;
+  --popup-border-color: red;
+  --input-placeholder-color: rgba(194, 193, 193, 0.8);
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background: linear-gradient(var(--main-bg-color), var(--secondary-bg-color)) fixed;
+  height: 100%;
+  margin: 0;
+}
+
+/* Container Styles */
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  text-align: center;
+  border: 3px solid var(--border-color);
+  border-radius: 5px;
+  background: rgba(215, 218, 215, 0.63);
+}
+
+.container-header {
+  background-color: var(--border-color);
+  overflow: hidden;
+  padding: 10px;
+  margin-top: 0;
+  color: rgba(250, 247, 247, 0.8);
+}
+
+/* Popup Styles */
+#popup {
+  display: none;
+  position: fixed;
+  background-color: var(--popup-bg-color);
+  border-radius: 3px;
+  padding: 10px;
+  border-left: 2px solid var(--popup-border-color);
+  top: 10rem;
+  left: 50%; 
+  width: 290px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 99;
+}
+
+.close-popup {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 99;
+}
+
+#fade{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(28, 29, 28, 0.63);
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+}
+
+/* Input Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  border: none;
+}
+
+input {
+  width: calc(70% - 20px);
+  padding: 18px;
+  margin-bottom: 10px;
+  border: none;
+  color: black;
+  border-radius: 9px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  outline: none;
+}
+
+input::-webkit-input-placeholder{
+  color: var(--input-placeholder-color);
+}
+input:-moz-input-placeholder{
+  color: var(--input-placeholder-color);
+}
+input::-moz-input-placeholder{
+  color: var(--input-placeholder-color);
+}
+input::-ms-input-placeholder {
+  color: var(--input-placeholder-color);
+}
+
+input:focus {
+  outline: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  list-style-type: none;
+  padding: 0;
+  margin-left: 53px;
+  margin-top: -16px;
+  border-radius: 4px;
+  width: calc(106% - 140px);
+  max-height: 600px;
+  overflow-y: none;  
+  border: 0px solid #fdfdfd;
+  border-top: none;
+  z-index: 3;
+}
+
+
+
+.dropdown-content li {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.dropdown li:nth-child(even){
+  background-color:rgb(220, 220, 221);
+}
+
+.dropdown-content li:hover,
+.dropdown-content li.focused {
+  background-color: var(--border-color);
+  color: whitesmoke;
+  border-radius: 4px;
+}
+
+.show {
+  display: block;
+}
+
+/* Button Styles */
+button {
+  position: absolute;
+  padding: 9px 14px;
+  margin-top: 10px;
+  background-color: yellowgreen;
+  color: black;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  margin-left: -3.6rem;
+  margin-top: -0.05rem;
+  z-index: 4;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Weather Info Styles */
+#weatherInfo {
+  margin-top: 20px;
+}
+
+.p-sml {
+  font-size: 17px;
+}
+
+/* Image Styles */
+.weather-img {
+  position: absolute;
+  margin-top: -7.5rem;
+  margin-left: -12rem;
+  width: auto;
+  height: auto;
+}
+
+.src-img {
+  width: 2.0rem;
+  height: auto;
+}
+
+/* Footer Styles */
+.footer {
+  display: flex;
+  background-color: yellowgreen;
+  padding-top: 3px;
+  justify-content: space-between;
+}
+
+.icon-link {
+  position: absolute;
+  top:30.6rem;
+  right: auto;
+  left: 40%;
+  font-size: x-small;
+  transform: translate(20%, 20%);
+  color: whitesmoke;
+}
+
+.weather-api-img {
+  width: 70px;
+  height: auto;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.basil {
+  margin-left: 20px;
+  margin-bottom: -20px;
+  transform: translate(20%, -15%);
+}
+
+/* Media Queries */
+@media (max-width: 440px) {
+  .weather-api-img,
+  .weather-img {
+    display: none; 
+  }
+  
+  #popup {
+    top: 10rem;
+    left: 50%; 
+  }
+  
+  .icon-link {
+    display: none;
+  }
+  
+}
+

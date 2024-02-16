@@ -1,0 +1,104 @@
+.moon-container {
+    position: absolute;
+}
+.moon {
+    position: fixed;
+    display: none;
+    width: 200px;
+    height: 200px;
+    background-color: #e6e6e6;
+    border-radius: 50%;
+    overflow: hidden;
+    top: 35vh;
+    left: 26vw;
+    box-shadow: 0 0 50px rgba(253, 253, 252, 0.8); 
+    z-index: -1;
+}
+
+.moon .crater {
+    position: absolute;
+    background-color: #b3b3b3;
+    border-radius: 50%;
+}
+
+.moon .crater:nth-child(1) {
+    width: 30px;
+    height: 30px;
+    top: 20%;
+    left: 40%;
+}
+
+.moon .crater:nth-child(2) {
+    width: 20px;
+    height: 20px;
+    top: 60%;
+    left: 70%;
+}
+.moon .crater:nth-child(3) {
+    width: 26px;
+    height: 26px;
+    top: 40%;
+    left: 20%;
+}
+.moon .crater:nth-child(4) {
+    width: 5px;
+    height: 5px;
+    top: 30%;
+    left: 5%;
+}
+
+.sun-container {
+    position: absolute;
+}
+
+.sun {
+    position: fixed;
+    display: none;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #FFD700; 
+    box-shadow: 0 0 50px rgba(255, 255, 0, 0.8); 
+    top: 35vh;
+    left: 26vw;
+    z-index: -1;
+}
+
+.sun-face {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: #FFD700; 
+    border-radius: 50%;
+}
+
+
+@keyframes slideDown {
+    0% {
+      top: -30vh;
+    }
+    100% {  
+      top: 4vh;
+    }
+  }
+
+  
+  .moon { 
+    top: -10vh;  
+    animation: slideDown;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+    animation-timing-function: ease-out; 
+    
+  }
+
+  .sun {
+    top: -10vh;  
+    animation: slideDown;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+    animation-timing-function: ease-out; 
+  }
