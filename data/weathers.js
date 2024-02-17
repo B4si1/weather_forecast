@@ -24,7 +24,7 @@ const palettes = [
   {code: 1180, day: 'Patchy light rain', night: 'Patchy light rain', color1: 'whitesmoke', color2: "#98bbc4", },
   {code: 1183, day: 'Light rain', night: 'Light rain', color1: 'whitesmoke', color2: "#98bbc4", },
   {code: 1186, day: 'Moderate rain at times', night: 'Moderate rain at times', color1: 'whitesmoke', color2: "#429de3", },
-  {code: 1189, day: 'Moderate rain', night: 'Moderate rain', color1: 'whitesmoke', color2: "429de3", },
+  {code: 1189, day: 'Moderate rain', night: 'Moderate rain', color1: 'whitesmoke', color2: "#429de3", },
   {code: 1192, day: 'Heavy rain at times', night: 'Heavy rain at times', color1: 'whitesmoke', color2: "#2078bb", },
   {code: 1195, day: 'Heavy rain', night: 'Heavy rain', color1: 'whitesmoke', color2: "#2078bb", },
   {code: 1198, day: 'Light freezing rain', night: 'Light freezing rain', color1: 'whitesmoke', color2: "#2078bb", },

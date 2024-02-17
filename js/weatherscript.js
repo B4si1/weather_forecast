@@ -1,14 +1,11 @@
-// This can be turned into a single function with params.
-// todo : 
-// - Seperate / organise js
-// - fix dual selecting when kb and mouse are being used on the list - done
-
 // API key for accessing weather data
 const apiKey = '9d52832445de4d18b0c152812240202';
 
 // DOM elements for user input, weather information, and error handling
 const cityInput = document.getElementById('cityInput');
 const weatherInfo = document.getElementById('weatherInfo');
+const alertInfo = document.getElementById('alertInfo');
+const airQuality = document.getElementById('airQuality');
 const errorPopup = document.getElementById('popup');
 const fadePopup = document.getElementById('fade');
 // Get references to the DOM elements with IDs 'sun' and 'moon'
@@ -23,15 +20,65 @@ import palettes from "../data/weathers.js";
 import commonCities from "../data/cities.js";
 import {clearSuggestions} from "../data/utils.js";
 import {formatString} from "../data/utils.js";
+import {formatDayWithSuffix} from "../data/utils.js";
+import {airCondition} from "../data/utils.js";
 
 // Function to render weather information on the UI
 function renderWeather(data) {
-  console.log(data);
- 
   // Extracting necessary data from the provided 'data' object
   const location = data.location;
   const currentWeather = data.current;
+  const forecast = data.forecast;
+  const alerts = data.alerts.alert;
   const trimTime = data.location.localtime.slice(10);
+
+  //  console.log(test);
+
+  if (alerts.length == 0){
+    // console.log('no alerts');
+    alertInfo.innerHTML = 'No Alerts'
+    alertInfo.style.display = 'none';
+    }else{
+    alertInfo.style.background = `linear-gradient(to right, transparent, red , transparent)`;
+    alertInfo.style.color = `whitesmoke`;
+    alertInfo.innerHTML = alerts.alert[0].headline;
+  }
+
+  // console.log(forecast);
+  // console.log(alerts);
+  // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
+  // console.log(typeof(forecast.forecastday[1].date))
+
+ 
+  const forecastContainer = document.getElementById("forecast");
+  for(let i = 0; i < forecast.forecastday.length; i++){
+    const dayContainer = document.getElementById(`day-${i + 1}`);
+    const dateString = forecast.forecastday[i].date;
+    const dateObject = new Date(dateString);
+      dayContainer.innerHTML = `
+        <h3 class="forcast-img">${formatDayWithSuffix(dateObject)}</h3>
+        <p class="forcast-img">${forecast.forecastday[i].day.condition.text}</p>
+        <p class="forcast-img"><img src="${forecast.forecastday[i].day.condition.icon}" alt="Weather Icon"></p>
+        <br>
+        <p><strong>Rain Chance:</strong> ${forecast.forecastday[i].day.daily_chance_of_rain}%</p>
+        <p><strong>Snow Chance:</strong> ${forecast.forecastday[i].day.daily_chance_of_snow}%</p>
+        <p><strong>Max Temperature:</strong> ${forecast.forecastday[i].day.maxtemp_c}°C / ${forecast.forecastday[i].day.maxtemp_f}°F</p>
+        <p><strong>Min Temperature:</strong> ${forecast.forecastday[i].day.mintemp_c}°C / ${forecast.forecastday[i].day.mintemp_f}°F</p>
+        `;
+        
+        
+        for(let j = 0; j < palettes.length; j++){
+          if(formatString(palettes[j].day) === formatString(forecast.forecastday[i].day.condition.text)){
+            // console.log('enter loop');
+            // console.log(formatString(palettes[j].day + " " + forecast.forecastday[i].day.condition.text));
+            dayContainer.style.backgroundImage = `linear-gradient(transparent, ${palettes[j].color2})`;
+          }        
+         
+        }
+        
+      forecastContainer.appendChild(dayContainer);
+  };
+
 
   // Reset sun and moon animation and display properties
   sun.style.animation = 'none';
@@ -56,18 +103,31 @@ function renderWeather(data) {
 
   // Generating HTML content for weather information
   const weatherHTML = `
-    <h2>${location.name}, ${location.country}</h2>
-    <p class="p-sml">${trimTime}</p> 
-    <h2>${currentWeather.temp_c}°C / ${currentWeather.temp_f}°F </h2>
-    <span class="sml-info">
-      <p>Feels like: ${currentWeather.feelslike_c}°C / ${currentWeather.feelslike_f}°F</p>
-      <p>Weather: ${currentWeather.condition.text}</p>
-      <p>Humidity: ${currentWeather.humidity}%</p>
-      <p>Wind: ${currentWeather.wind_kph}kph, ${currentWeather.wind_mph}mph | ${currentWeather.wind_dir}</p>
-    </span>
-    <img class="weather-img" src="${currentWeather.condition.icon}" alt="Weather Icon">
-  `;
+    <div class="summary-fill">
+      <h2>${location.name}, <span class="countryText">${location.country}<span></h2>
+      <p class="p-sml">${trimTime}</p> 
+      <h2>${currentWeather.temp_c}°C / ${currentWeather.temp_f}°F </h2>
+    </div>
+    <div class="summary">
+      <div class="summary1">
+        <p class="forcast-img"><strong> ${currentWeather.condition.text} </strong></p>  
+        <p><strong>Feels like:</strong> ${currentWeather.feelslike_c}°C / ${currentWeather.feelslike_f}°F</p>
+        <p><strong>Humidity:</strong> ${currentWeather.humidity}%</p>
+        <p><strong>Wind:  </strong>${currentWeather.wind_mph}mph | ${currentWeather.wind_dir} ${currentWeather.wind_degree}° </p>
+      </div>
+      <div class="summary2">
+        <p><strong>Visibility:  </strong>${currentWeather.vis_km}km / ${currentWeather.vis_miles} miles</p>
+        <p><strong>Carbon monoxide:  </strong>${currentWeather.air_quality.co} ppm</p>
+        <p><strong>Nitrogen dioxide:  </strong>${currentWeather.air_quality.no2} ppm</p>
+        <p><strong>Sulfur dioxide:  </strong>${currentWeather.air_quality.so2} ppm</p>
+      </div>
+    </div>
+    `;
 
+
+  const airQualityInfo = `<strong>Air Quality :</strong>  ${airCondition(currentWeather.air_quality.pm2_5)} (${currentWeather.air_quality.pm2_5} PM2.5)`
+
+  airQuality.innerHTML = airQualityInfo;
   // Setting the generated HTML to the innerHTML of a DOM element with id 'weatherInfo'
   weatherInfo.innerHTML = weatherHTML;
 
@@ -108,7 +168,7 @@ function getWeather() {
   }
 
   // Fetch weather data for the specified city
-  fetchWeatherData(city, 0);
+  fetchWeatherData(city);
   clearSuggestions();
 }
 
@@ -135,32 +195,12 @@ function fetchWeatherData(city) {
     });
 }
 
-// Event listener for the 'Enter' key to trigger a search
-document.getElementById('cityInput').addEventListener('keypress', function(event) {
-  if (event.key == 'Enter') {
-    searchPress(event);
-  }
-});
-
-// Event listener for the 'Search' button click to trigger a search
-document.addEventListener('DOMContentLoaded', function() {
-  const button = document.querySelector('button');
-  button.addEventListener('click', getWeather);
-  clearSuggestions();
-});
-
-// Event listener to hide error popup when clicked
-errorPopup.addEventListener('click', function(){
-  errorPopup.style.display = 'none';
-  fadePopup.style.display = 'none';
-  clearSuggestions();
-});
-
 // Function to handle 'Enter' key press and trigger a search if input is valid
 function searchPress(event){
   if (event.key == "Enter"){
-    clearSuggestions();
+    
     getWeather();
+    clearSuggestions();
     
   }
 }
@@ -192,6 +232,27 @@ function handleKeyboardNavigation(event) {
     suggestion.classList.toggle('focused', index === focusedSuggestionIndex);
   });
 }
+
+// Event listener for the 'Enter' key to trigger a search
+document.getElementById('cityInput').addEventListener('keypress', function(event) {
+  if (event.key == 'Enter') {
+    searchPress(event);
+  }
+});
+
+// Event listener to hide error popup when clicked
+errorPopup.addEventListener('click', function(){
+  errorPopup.style.display = 'none';
+  fadePopup.style.display = 'none';
+  clearSuggestions();
+});
+
+// Event listener for the 'Search' button click to trigger a search
+document.addEventListener('DOMContentLoaded', function() {
+  const button = document.getElementById('submitButton');
+  button.addEventListener('click', getWeather);
+  clearSuggestions();
+});
 
 // Event listener for input changes in the city input field
 document.getElementById('cityInput').addEventListener('input', function () {
@@ -272,5 +333,6 @@ function onLoadWeather() {
 // Initialize the weather display for Nairobi when the page loads
 onLoadWeather();
 // INITIAL CALLS
+
 
 

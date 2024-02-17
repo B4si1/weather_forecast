@@ -18,27 +18,34 @@
 </head>
 <body id="body-main">
   <div class="container">
-    <h1 class="container-header"> Weather App </h1>
+    <h1 class="container-header">~ Weather App ~</h1>
     
    
    <div class="dropdown">
       <input id="cityInput" type="text" placeholder="Enter a city ...">
-      <button id="submitButton"><img class="src-img" src="./images/search.png" alt="Search"></button>
+      <img id="submitButton" class="src-img" src="./images/search.png" alt="Search">
       <ul id="cityOutput" class="dropdown-content"></ul>
     </div>
     
-    
+    <div id="alertInfo"> Alert Box </div>
     <div id="weatherInfo"></div>
+    
+    <div id="airQuality"></div>
+
+    <div id="forecast">
+      <div class="forecast-day" id="day-1"></div>
+      <div class="forecast-day" id="day-2"></div>
+      <div class="forecast-day" id="day-3"></div>
+    </div>
     
     
     
     <div class="footer">
       <span class="basil"><h4>🌎</h4></span> 
-      <span class="basil"><h4>🍀</h4></span> 
-      <span class="basil"><h4>🌎</h4></span> 
-      <span class="basil"><h4>🍀</h4></span> 
-      <span class="basil"><h4>🌎</h4></span> 
       <a href="https://www.weatherapi.com/" title="Free Weather API" target="_blank"><img class="weather-api-img" src='//cdn.weatherapi.com/v4/images/weatherapi_logo.png' alt="Weather data by WeatherAPI.com"></a>
+      <span class="basil"><h4>🌎</h4></span> 
+      
+      
     </div>
   </div>
 
