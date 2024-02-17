@@ -32,7 +32,7 @@ function renderWeather(data) {
   const alerts = data.alerts.alert;
   const trimTime = data.location.localtime.slice(10);
 
-  //  console.log(test);
+   console.log(data.alerts.alert);
 
   if (alerts.length == 0){
     // console.log('no alerts');
@@ -44,7 +44,7 @@ function renderWeather(data) {
     alertInfo.innerHTML = alerts.alert[0].headline;
   }
 
-  // console.log(forecast);
+  console.log(forecast);
   // console.log(alerts);
   // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
   // console.log(typeof(forecast.forecastday[1].date))
