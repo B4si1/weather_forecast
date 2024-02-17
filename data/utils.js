@@ -14,6 +14,7 @@ export function clearSuggestions() {
   }
   // UTILITIES AND HELPER FUNCTIONS
 
+  // Function to add letters to date
   export function formatDayWithSuffix(date) {
     
     const day = date.getDate();
@@ -22,6 +23,7 @@ export function clearSuggestions() {
     return day + suffix;
   }
   
+  // Function to check air quality
   export function airCondition(value) {
     const airColor = document.getElementById('airQuality');   
     if (value < 25) {
@@ -42,6 +44,12 @@ export function clearSuggestions() {
     }
   }
 
+  // Function to truncate text
+  export function truncateText(text, maxLength) {
+    if (text.length <= maxLength) {
+        return text;
+    } else {
+        return text.slice(0, maxLength) + '...';
+    }
+}
  
- 
-  'linear-gradient(to right, red , yellow)'

@@ -258,7 +258,7 @@ input:focus {
 @media (max-width: 440px) {
   .weather-api-img,
   .weather-img,
-  #day-1,
+  #day-3,
   .summary {
     display: none;
   }

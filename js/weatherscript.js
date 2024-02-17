@@ -22,6 +22,7 @@ import {clearSuggestions} from "../data/utils.js";
 import {formatString} from "../data/utils.js";
 import {formatDayWithSuffix} from "../data/utils.js";
 import {airCondition} from "../data/utils.js";
+import {truncateText} from "../data/utils.js";
 
 // Function to render weather information on the UI
 function renderWeather(data) {
@@ -32,7 +33,7 @@ function renderWeather(data) {
   const alerts = data.alerts.alert;
   const trimTime = data.location.localtime.slice(10);
 
-   console.log(data.alerts.alert);
+  //  console.log(data.alerts.alert);
 
   if (alerts.length == 0){
     // console.log('no alerts');
@@ -44,7 +45,7 @@ function renderWeather(data) {
     alertInfo.innerHTML = alerts.alert[0].headline;
   }
 
-  console.log(forecast);
+  // console.log(forecast);
   // console.log(alerts);
   // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
   // console.log(typeof(forecast.forecastday[1].date))
@@ -57,7 +58,7 @@ function renderWeather(data) {
     const dateObject = new Date(dateString);
       dayContainer.innerHTML = `
         <h3 class="forcast-img">${formatDayWithSuffix(dateObject)}</h3>
-        <p class="forcast-img">${forecast.forecastday[i].day.condition.text}</p>
+        <p class="forcast-img">${truncateText(forecast.forecastday[i].day.condition.text, 10)}</p>
         <p class="forcast-img"><img src="${forecast.forecastday[i].day.condition.icon}" alt="Weather Icon"></p>
         <br>
         <p><strong>Rain Chance:</strong> ${forecast.forecastday[i].day.daily_chance_of_rain}%</p>
@@ -104,7 +105,7 @@ function renderWeather(data) {
   // Generating HTML content for weather information
   const weatherHTML = `
     <div class="summary-fill">
-      <h2>${location.name}, <span class="countryText">${location.country}<span></h2>
+      <h2>${truncateText(location.name, 10)}, <span class="countryText">${truncateText(location.country, 10)}<span></h2>
       <p class="p-sml">${trimTime}</p> 
       <h2>${currentWeather.temp_c}°C / ${currentWeather.temp_f}°F </h2>
     </div>
@@ -177,6 +178,9 @@ function fetchWeatherData(city) {
   
   const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=yes&alerts=yes`;
   
+  localStorage.setItem('currentCity', city);
+  
+
   // Fetch data from the API, handle response, and render weather data or display an error
   fetch(apiUrl)
     .then(response => {
@@ -327,12 +331,16 @@ document.getElementById('cityOutput').addEventListener('click', function (event)
 // INITIAL CALLS
 // Function to fetch and render weather data for Nairobi when the page loads
 function onLoadWeather() {
-  fetchWeatherData('auto:ip');
+  if(localStorage.getItem('currentCity') == 0){
+    fetchWeatherData('auto:ip');
+  }
+  else{
+    fetchWeatherData(localStorage.getItem('currentCity'));
+  }
+  
 }
 
 // Initialize the weather display for Nairobi when the page loads
 onLoadWeather();
 // INITIAL CALLS
-
-
 
