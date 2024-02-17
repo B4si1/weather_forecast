@@ -127,7 +127,7 @@ input:focus {
   margin-left: 82px;
   margin-top: -16px;
   border-radius: 4px;
-  width: calc(94% - 140px);
+  width: calc(96% - 140px);
   max-height: 600px;
   overflow-y: none;
   border: 0px solid #fdfdfd;
@@ -264,7 +264,7 @@ input:focus {
   }
 
   .dropdown-content {
-    width: calc(100% - 140px);
+    width: calc(107.2% - 140px);
     margin-left: 55px;
   }
 
@@ -280,7 +280,7 @@ input:focus {
 
 @media (max-width: 320px) {
   .dropdown-content {
-    width: calc(115% - 140px);
+    width: calc(119.9% - 140px);
     margin-left: 39px;
   }
 }
