@@ -43,7 +43,7 @@ function renderWeather(data) {
   // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
   // console.log(typeof(forecast.forecastday[1].date))
   // console.log(alerts);
-  // console.log(data.alerts.alert);
+  console.log(data.alerts.alert);
 
   infoElement.innerHTML = `Last API Update : ${currentWeather.last_updated}`
 
@@ -54,7 +54,7 @@ function renderWeather(data) {
     }else{
     alertInfo.style.background = `linear-gradient(to right, transparent, red , transparent)`;
     alertInfo.style.color = `whitesmoke`;
-    alertInfo.innerHTML = `${data.alerts.alert[1].headline} : ${data.alerts.alert[1].event}`;
+    alertInfo.innerHTML = `${data.alerts.alert[0].headline} : ${data.alerts.alert[0].event}`;
   }
 
   const forecastContainer = document.getElementById("forecast");
