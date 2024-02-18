@@ -47,7 +47,7 @@ export function clearSuggestions() {
   // Function to check uv quality
   export function uvCondition(value) {
     const uvColor = document.getElementById('uvQuality');   
-    if (value < 2) {
+    if (value <= 2) {
       uvColor.style.background = `linear-gradient(to right, transparent, green , transparent)`
       return `${value} <small>(Low)</small>`;
     } else if (value >= 3 && value <= 5) {
