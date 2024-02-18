@@ -196,7 +196,7 @@ function getWeather() {
 // Function to fetch weather data from the API for a given city
 function fetchWeatherData(city) {
   
-  const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=yes&alerts=yes`;
+  const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=yes&alerts=yes&tides=yes`;
   
   localStorage.setItem('currentCity', city);
   
@@ -351,7 +351,7 @@ document.getElementById('cityOutput').addEventListener('click', function (event)
 // Function to fetch and render weather data for Nairobi when the page loads
 function onLoadWeather() {
   if(localStorage.getItem('currentCity') == 0){
-    fetchWeatherData('auto:ip')
+    fetchWeatherData('London')
   }
   else{
     fetchWeatherData(localStorage.getItem('currentCity'));
