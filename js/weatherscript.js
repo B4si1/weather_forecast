@@ -36,26 +36,16 @@ function renderWeather(data) {
   const alerts = data.alerts.alert;
   const trimTime = data.location.localtime.slice(10);
   
-  // console.log(location);
+  console.log(location);
   // console.log(currentWeather);
   // console.log(currentWeather.last_updated);
-  // console.log(forecast);
+  console.log(forecast);
   // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
   // console.log(typeof(forecast.forecastday[1].date))
   // console.log(alerts);
   console.log(data.alerts.alert);
 
   infoElement.innerHTML = `Last API Update : ${currentWeather.last_updated}`
-
-  if (alerts.length == 0){
-    // console.log('no alerts');
-    alertInfo.innerHTML = 'No Alerts'
-    alertInfo.style.display = 'none';
-    }else{
-    alertInfo.style.background = `linear-gradient(to right, transparent, red , transparent)`;
-    alertInfo.style.color = `whitesmoke`;
-    alertInfo.innerHTML = `${data.alerts.alert[0].headline} : ${data.alerts.alert[0].event}`;
-  }
 
   const forecastContainer = document.getElementById("forecast");
   for(let i = 0; i < forecast.forecastday.length; i++){
@@ -67,10 +57,10 @@ function renderWeather(data) {
         <p class="forcast-img">${truncateText(forecast.forecastday[i].day.condition.text, 22)}</p>
         <p class="forcast-img"><img src="${forecast.forecastday[i].day.condition.icon}" alt="Weather Icon"></p>
         <br>
-        <p><strong>${forecast.forecastday[i].day.avgtemp_c}°C / ${forecast.forecastday[i].day.avgtemp_f}°F</strong></p>
-        <p><strong>Rain Chance:</strong> ${forecast.forecastday[i].day.daily_chance_of_rain}%</p>
-        <p><strong>Max Temperature:</strong> ${forecast.forecastday[i].day.maxtemp_c}°C / ${forecast.forecastday[i].day.maxtemp_f}°F</p>
-        <p><strong>Min Temperature:</strong> ${forecast.forecastday[i].day.mintemp_c}°C / ${forecast.forecastday[i].day.mintemp_f}°F</p>
+        <p><strong><span class="right_align">${forecast.forecastday[i].day.avgtemp_c}°C / ${forecast.forecastday[i].day.avgtemp_f}°F</strong></span></p>
+        <p><strong>Rain Chance:</strong> <span class="right_align">${forecast.forecastday[i].day.daily_chance_of_rain}%</span></p>
+        <p><strong>Max Temp:</strong> <span class="right_align">${forecast.forecastday[i].day.maxtemp_c}°C / ${forecast.forecastday[i].day.maxtemp_f}°F</span></p>
+        <p><strong>Min Temp:</strong> <span class="right_align">${forecast.forecastday[i].day.mintemp_c}°C / ${forecast.forecastday[i].day.mintemp_f}°F</span></p>
         `;
         
         
@@ -111,9 +101,9 @@ function renderWeather(data) {
   // Generating HTML content for weather information
   const weatherHTML = `
     <div class="summary-fill">
-      <h2>${location.name}, <span class="countryText">${truncateText(location.country, 10)}<span></h2>
+      <h1>${location.name}, <span class="countryText">${truncateText(location.country, 10)}<span></h1>
       <p class="p-sml">${trimTime}</p> 
-      <h2>${currentWeather.temp_c}°C / ${currentWeather.temp_f}°F </h2>
+      <h1>${currentWeather.temp_c}°C / ${currentWeather.temp_f}°F </h1>
       <div class="p-update">Last API Update: ${currentWeather.last_updated}</div>
     </div>
     <div class="summary">
@@ -143,14 +133,14 @@ function renderWeather(data) {
   weatherInfo.innerHTML = weatherHTML;
 
   if(palettes === undefined || palettes.length === 0){
-    document.body.style.backgroundImage = `linear-gradient(white, grey)`;
+    document.body.style.backgroundImage = `linear-gradient(whitesmoke, grey)`;
     } else {
    // Iterate through each palette in the 'palettes' array
    for (let i = 0; i < palettes.length; i++) { // (let i = palettes.length; i == 0; i--)
     // Check if it's daytime and the current weather condition matches the day palette
       if (isDay() && (formatString(palettes[i].day) === formatString(currentWeather.condition.text) || formatString(palettes[i].night) === formatString(currentWeather.condition.text))) {
         // Set the background gradient for the body based on the day palette
-        document.body.style.backgroundImage = `linear-gradient(white, ${palettes[i].color2})`;
+        document.body.style.backgroundImage = `linear-gradient(whitesmoke, ${palettes[i].color2})`;
         // Exit the loop
         break;
       } 
@@ -162,6 +152,27 @@ function renderWeather(data) {
         break;
       } 
     }
+  }
+
+  //Alert Logic
+
+
+  if (alerts.length == 0){
+    // console.log('no alerts');
+    alertInfo.innerHTML = 'No Alerts'
+    alertInfo.style.display = 'none';
+    }else{
+    
+    alertInfo.style.color = `whitesmoke`;
+    alertInfo.innerHTML = `<marquee behavior="scroll" direction="left" scrollamount="9">
+    | Event: ${data.alerts.alert[0].event}
+    | Headline: ${data.alerts.alert[0].headline}
+    | Areas: ${data.alerts.alert[0].areas} 
+    | Category: ${data.alerts.alert[0].category}
+    | Description: ${data.alerts.alert[0].desc} 
+     
+    </marquee>`;
+    // alertInfo.innerHTML = `Example alert | Some storm here | Dont die here | 5:30 | goat`;
   }
   
 }

@@ -30,7 +30,7 @@ export function clearSuggestions() {
       airColor.style.background = `linear-gradient(to right, transparent, green , transparent)`
       return 'Good';
     } else if (value >= 25 && value <= 50) {
-      airColor.style.background = `linear-gradient(to right, transparent, yellow , transparent)`
+      airColor.style.background = `linear-gradient(to right, transparent, rgba(238, 238, 43, 0.726) , transparent)`
       return 'Fair';
     } else if (value > 50 && value <= 100) {
       airColor.style.background = `linear-gradient(to right, transparent, orange , transparent)`
@@ -51,7 +51,7 @@ export function clearSuggestions() {
       uvColor.style.background = `linear-gradient(to right, transparent, green , transparent)`
       return `${value} <small>(Low)</small>`;
     } else if (value >= 3 && value <= 5) {
-      uvColor.style.background = `linear-gradient(to right, transparent, yellow , transparent)`
+      uvColor.style.background = `linear-gradient(to right, transparent, rgba(238, 238, 43, 0.726) , transparent)`
       return `${value} <small>(Moderate)</small>`;
     } else if (value > 6 && value <= 7) {
       uvColor.style.background = `linear-gradient(to right, transparent, orange , transparent)`
