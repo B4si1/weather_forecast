@@ -42,8 +42,8 @@ function renderWeather(data) {
   // console.log(forecast);
   // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
   // console.log(typeof(forecast.forecastday[1].date))
-  console.log(alerts);
-  console.log(data.alerts.alert);
+  // console.log(alerts);
+  // console.log(data.alerts.alert);
 
   infoElement.innerHTML = `Last API Update : ${currentWeather.last_updated}`
 
