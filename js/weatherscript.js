@@ -57,10 +57,10 @@ function renderWeather(data) {
         <p class="forcast-img">${truncateText(forecast.forecastday[i].day.condition.text, 22)}</p>
         <p class="forcast-img"><img src="${forecast.forecastday[i].day.condition.icon}" alt="Weather Icon"></p>
         <br>
-        <p><strong><span class="right_align">${forecast.forecastday[i].day.avgtemp_c}°C / ${forecast.forecastday[i].day.avgtemp_f}°F</strong></span></p>
-        <p><strong>Rain Chance:</strong> <span class="right_align">${forecast.forecastday[i].day.daily_chance_of_rain}%</span></p>
-        <p><strong>Max Temp:</strong> <span class="right_align">${forecast.forecastday[i].day.maxtemp_c}°C / ${forecast.forecastday[i].day.maxtemp_f}°F</span></p>
-        <p><strong>Min Temp:</strong> <span class="right_align">${forecast.forecastday[i].day.mintemp_c}°C / ${forecast.forecastday[i].day.mintemp_f}°F</span></p>
+        <p class="underline"><strong><span>${forecast.forecastday[i].day.avgtemp_c}°C / ${forecast.forecastday[i].day.avgtemp_f}°F</strong></span></p>
+        <p class="underline"><strong>Rain Chance:</strong> <span>${forecast.forecastday[i].day.daily_chance_of_rain}%</span></p>
+        <p class="underline"><strong >Max Temp:</strong> <span>${forecast.forecastday[i].day.maxtemp_c}°C / ${forecast.forecastday[i].day.maxtemp_f}°F</span></p>
+        <p class="underline"><strong >Min Temp:</strong> <span>${forecast.forecastday[i].day.mintemp_c}°C / ${forecast.forecastday[i].day.mintemp_f}°F</span></p>
         `;
         
         
@@ -103,21 +103,21 @@ function renderWeather(data) {
     <div class="summary-fill">
       <h1>${location.name}, <span class="countryText">${truncateText(location.country, 10)}<span></h1>
       <p class="p-sml">${trimTime}</p> 
-      <h1>${currentWeather.temp_c}°C / ${currentWeather.temp_f}°F </h1>
+      <h1>${currentWeather.temp_c}<small>°C</small> / ${currentWeather.temp_f}<small>°F</small> </h1>
       <div class="p-update">Last API Update: ${currentWeather.last_updated}</div>
     </div>
     <div class="summary">
       <div class="summary1">
         <p class="forcast-img"><strong> ${truncateText(currentWeather.condition.text, 15)} </strong></p>  
-        <p><strong>Feels like:</strong> ${currentWeather.feelslike_c}°C / ${currentWeather.feelslike_f}°F</p>
-        <p><strong>Humidity:</strong> ${currentWeather.humidity}%</p>
-        <p><strong>Wind:  </strong>${currentWeather.wind_mph}mph | ${currentWeather.wind_dir} ${currentWeather.wind_degree}° </p>
+        <p><strong>Feels like:</strong> ${currentWeather.feelslike_c}<small>°C</small> / ${currentWeather.feelslike_f}<small>°F</small></p>
+        <p><strong>Humidity:</strong> ${currentWeather.humidity}<small>%</small></p>
+        <p><strong>Wind:  </strong>${currentWeather.wind_mph}<small>mph</small> | ${currentWeather.wind_dir} ${currentWeather.wind_degree}<small>°</small> </p>
       </div>
       <div class="summary2">
-        <p><strong>Visibility:  </strong>${currentWeather.vis_km}km / ${currentWeather.vis_miles} miles</p>
-        <p><strong>Carbon monoxide:  </strong>${currentWeather.air_quality.co} ppm</p>
-        <p><strong>Nitrogen dioxide:  </strong>${currentWeather.air_quality.no2} ppm</p>
-        <p><strong>Sulfur dioxide:  </strong>${currentWeather.air_quality.so2} ppm</p>
+        <p><strong>Visibility:  </strong>${currentWeather.vis_km}<small>km</small> / ${currentWeather.vis_miles}<small>miles</small></p>
+        <p><strong>Carbon monoxide:  </strong>${currentWeather.air_quality.co}<small>ppm</small></p>
+        <p><strong>Nitrogen dioxide:  </strong>${currentWeather.air_quality.no2}<small>ppm</small></p>
+        <p><strong>Sulfur dioxide:  </strong>${currentWeather.air_quality.so2}<small>ppm</small></p>
       </div>
     </div>
     `;
@@ -211,6 +211,9 @@ function fetchWeatherData(city) {
     })
     .then(data => {
       renderWeather(data);
+      // renderLocationData(data);
+      // renderForecastData(data);
+      // renderAlertData(data);
     })
     .catch(error => {
       console.error('Error fetching weather data:', error);

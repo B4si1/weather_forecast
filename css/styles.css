@@ -334,8 +334,7 @@ input:focus {
 #forecast{
   display: flex;
   /* text-align: center; */
-  justify-content: space-around;
-  
+  /* justify-content: space-around; */
 }
 
 .forecast-day {
@@ -357,15 +356,20 @@ input:focus {
 }
 
 .forecast-day p{
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
   font-size: small;
   margin-top: 3px;
   margin-bottom: 3px;
   text-align: left;
+  
 }
-span{
-  /* display:inline; */
-  align-items: right;
+.forecast-day p.underline{
+  border-bottom: 1px solid white;
+  margin-bottom: 2px;
 }
+
 
 
 
