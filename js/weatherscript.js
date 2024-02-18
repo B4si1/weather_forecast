@@ -36,14 +36,14 @@ function renderWeather(data) {
   const alerts = data.alerts.alert;
   const trimTime = data.location.localtime.slice(10);
   
-  console.log(location);
+  // console.log(location);
   // console.log(currentWeather);
   // console.log(currentWeather.last_updated);
-  console.log(forecast);
+  // console.log(forecast);
   // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
   // console.log(typeof(forecast.forecastday[1].date))
   // console.log(alerts);
-  console.log(data.alerts.alert);
+  // console.log(data.alerts.alert);
 
   infoElement.innerHTML = `Last API Update : ${currentWeather.last_updated}`
 
