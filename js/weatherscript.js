@@ -39,13 +39,13 @@ function renderWeather(data) {
   // console.log(location);
   // console.log(currentWeather);
   // console.log(currentWeather.last_updated);
-  console.log(forecast);
+  // console.log(forecast);
   // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
   // console.log(typeof(forecast.forecastday[1].date))
   // console.log(alerts);
   // console.log(data.alerts.alert);
 
-  infoElement.innerHTML = `Last Update : ${currentWeather.last_updated}`
+  infoElement.innerHTML = `Last API Update : ${currentWeather.last_updated}`
 
   if (alerts.length == 0){
     // console.log('no alerts');
