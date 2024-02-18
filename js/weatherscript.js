@@ -64,7 +64,7 @@ function renderWeather(data) {
     const dateObject = new Date(dateString);
       dayContainer.innerHTML = `
         <h3 class="forcast-img">${formatDayWithSuffix(dateObject)}</h3>
-        <p class="forcast-img">${truncateText(forecast.forecastday[i].day.condition.text, 10)}</p>
+        <p class="forcast-img">${truncateText(forecast.forecastday[i].day.condition.text, 22)}</p>
         <p class="forcast-img"><img src="${forecast.forecastday[i].day.condition.icon}" alt="Weather Icon"></p>
         <br>
         <p><strong>${forecast.forecastday[i].day.avgtemp_c}°C / ${forecast.forecastday[i].day.avgtemp_f}°F</strong></p>
