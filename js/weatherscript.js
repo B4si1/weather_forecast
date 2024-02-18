@@ -154,15 +154,14 @@ function renderWeather(data) {
     }
   }
 
-  //Alert Logic
-
+  
+  //Alerts
 
   if (alerts.length == 0){
     // console.log('no alerts');
     alertInfo.innerHTML = 'No Alerts'
     alertInfo.style.display = 'none';
-    }else{
-    
+    } else {
     alertInfo.style.color = `whitesmoke`;
     alertInfo.innerHTML = `<marquee behavior="scroll" direction="left" scrollamount="9">
     | Event: ${data.alerts.alert[0].event}
@@ -170,7 +169,7 @@ function renderWeather(data) {
     | Areas: ${data.alerts.alert[0].areas} 
     | Category: ${data.alerts.alert[0].category}
     | Description: ${data.alerts.alert[0].desc} 
-     
+    
     </marquee>`;
     // alertInfo.innerHTML = `Example alert | Some storm here | Dont die here | 5:30 | goat`;
   }
