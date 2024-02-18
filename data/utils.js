@@ -44,6 +44,27 @@ export function clearSuggestions() {
     }
   }
 
+  // Function to check uv quality
+  export function uvCondition(value) {
+    const uvColor = document.getElementById('uvQuality');   
+    if (value < 2) {
+      uvColor.style.background = `linear-gradient(to right, transparent, green , transparent)`
+      return `${value} <small>(Low)</small>`;
+    } else if (value >= 3 && value <= 5) {
+      uvColor.style.background = `linear-gradient(to right, transparent, yellow , transparent)`
+      return `${value} <small>(Moderate)</small>`;
+    } else if (value > 6 && value <= 7) {
+      uvColor.style.background = `linear-gradient(to right, transparent, orange , transparent)`
+      return `${value} <small>(High)</small>`;
+    } else if (value > 8 && value <= 10) {
+      uvColor.style.background = `linear-gradient(to right, transparent, red , transparent)`
+      return `${value} <small>(Very High)</small>`;
+    } else {
+      uvColor.style.background = `linear-gradient(to right, transparent, purple , transparent)`
+      return `${value} <small>(Extreme)</small>`;
+    }
+  }
+
   // Function to truncate text
   export function truncateText(text, maxLength) {
     if (text.length <= maxLength) {

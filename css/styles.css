@@ -4,7 +4,7 @@
 :root {
   --main-bg-color: white;
   --secondary-bg-color: grey;
-  --border-color: yellowgreen;
+  --border-color: rgb(94, 185, 2);
   --popup-bg-color: aliceblue;
   --popup-border-color: red;
   --input-placeholder-color: rgba(194, 193, 193, 0.8);
@@ -26,10 +26,12 @@ body {
   border: 3px solid var(--border-color);
   border-radius: 2px;
   background: rgba(215, 218, 215, 0.63);
+  background-image: linear-gradient(to bottom right, hsla(128, 100%, 55%, 0.048), hsla(187, 88%, 39%, 0.027));
+  padding-top: 20px;
 }
 
 .container-header {
-  background-color: var(--border-color);
+  /* background-color: var(--border-color); */
   overflow: hidden;
   padding: 10px;
   margin-top: 0;
@@ -185,15 +187,26 @@ input:focus {
 }
 
 /* Forecast Styles */
-#forecast,
+#forecast{
+  display: flex;
+  text-align: center;
+}
+
 .summary {
   display: flex;
   text-align: center;
 }
 
-.summary,
+
+.summary{
+  border-top: 1px solid hsla(0, 100%, 100%, 0.39);
+  border-bottom: 1px solid hsla(0, 100%, 100%, 0.39);
+  padding: 10px;
+  background: linear-gradient(transparent, hsla(0, 0%, 100%, 0.342));
+}
+
 .forecast-day {
-  border: 1px solid #ccc;
+  border: 1px solid hsla(0, 100%, 100%, 0.39);
   padding: 10px;
   background: linear-gradient(transparent, hsla(0, 0%, 100%, 0.342));
 }
@@ -212,8 +225,8 @@ input:focus {
   padding-left: 10px;
 }
 
-#airQuality{
-  background-color: #45a049;
+#airQuality,
+#uvQuality{
   padding-top: 5px;
   padding-bottom: 5px;
 }
@@ -230,7 +243,7 @@ input:focus {
 /* Footer Styles */
 .footer {
   display: flex;
-  background-color: var(--border-color);
+  /* background-color: var(--border-color); */
   margin-top: 3px 0 0 0;
   padding-top: 3px;
   justify-content:space-around;

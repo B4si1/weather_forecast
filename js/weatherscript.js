@@ -6,6 +6,7 @@ const cityInput = document.getElementById('cityInput');
 const weatherInfo = document.getElementById('weatherInfo');
 const alertInfo = document.getElementById('alertInfo');
 const airQuality = document.getElementById('airQuality');
+const uvQuality = document.getElementById('uvQuality');
 const errorPopup = document.getElementById('popup');
 const fadePopup = document.getElementById('fade');
 const infoElement = document.getElementById('infoElement');
@@ -23,6 +24,7 @@ import {clearSuggestions} from "../data/utils.js";
 import {formatString} from "../data/utils.js";
 import {formatDayWithSuffix} from "../data/utils.js";
 import {airCondition} from "../data/utils.js";
+import {uvCondition} from "../data/utils.js";
 import {truncateText} from "../data/utils.js";
 
 // Function to render weather information on the UI
@@ -37,7 +39,7 @@ function renderWeather(data) {
   // console.log(location);
   // console.log(currentWeather);
   // console.log(currentWeather.last_updated);
-  // console.log(forecast);
+  console.log(forecast);
   // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
   // console.log(typeof(forecast.forecastday[1].date))
   // console.log(alerts);
@@ -65,8 +67,8 @@ function renderWeather(data) {
         <p class="forcast-img">${truncateText(forecast.forecastday[i].day.condition.text, 10)}</p>
         <p class="forcast-img"><img src="${forecast.forecastday[i].day.condition.icon}" alt="Weather Icon"></p>
         <br>
+        <p><strong>${forecast.forecastday[i].day.avgtemp_c}°C / ${forecast.forecastday[i].day.avgtemp_f}°F</strong></p>
         <p><strong>Rain Chance:</strong> ${forecast.forecastday[i].day.daily_chance_of_rain}%</p>
-        <p><strong>Snow Chance:</strong> ${forecast.forecastday[i].day.daily_chance_of_snow}%</p>
         <p><strong>Max Temperature:</strong> ${forecast.forecastday[i].day.maxtemp_c}°C / ${forecast.forecastday[i].day.maxtemp_f}°F</p>
         <p><strong>Min Temperature:</strong> ${forecast.forecastday[i].day.mintemp_c}°C / ${forecast.forecastday[i].day.mintemp_f}°F</p>
         `;
@@ -132,8 +134,11 @@ function renderWeather(data) {
 
 
   const airQualityInfo = `<strong>Air Quality :</strong>  ${airCondition(currentWeather.air_quality.pm2_5)} (${currentWeather.air_quality.pm2_5} <small>PM2.5</small>)`
+  const uvQualityInfo = `<strong>UV index :</strong>  ${uvCondition(forecast.forecastday[1].day.uv)}`
+
 
   airQuality.innerHTML = airQualityInfo;
+  uvQuality.innerHTML = uvQualityInfo;
   // Setting the generated HTML to the innerHTML of a DOM element with id 'weatherInfo'
   weatherInfo.innerHTML = weatherHTML;
 
