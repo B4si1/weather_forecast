@@ -206,7 +206,9 @@ input:focus {
 }
 
 .forecast-day {
-  border: 1px solid hsla(0, 100%, 100%, 0.39);
+  border-right: 1px solid hsla(0, 100%, 100%, 0.39);
+  border-left: 1px solid hsla(0, 100%, 100%, 0.39);
+  border-bottom: 1px solid hsla(0, 100%, 100%, 0.39);
   padding: 10px;
   background: linear-gradient(transparent, hsla(0, 0%, 100%, 0.342));
 }
@@ -318,4 +320,9 @@ input:focus {
   border-radius: 3px;
   color: white; 
   padding: 5px; 
+  text-decoration: none;
+}
+
+.API{
+  color: white;
 }

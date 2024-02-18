@@ -114,7 +114,7 @@ function renderWeather(data) {
       <h2>${location.name}, <span class="countryText">${truncateText(location.country, 10)}<span></h2>
       <p class="p-sml">${trimTime}</p> 
       <h2>${currentWeather.temp_c}°C / ${currentWeather.temp_f}°F </h2>
-      <div class="p-update">Last Update: ${currentWeather.last_updated}</div>
+      <div class="p-update">Last API Update: ${currentWeather.last_updated}</div>
     </div>
     <div class="summary">
       <div class="summary1">
@@ -341,7 +341,7 @@ document.getElementById('cityOutput').addEventListener('click', function (event)
 // Function to fetch and render weather data for Nairobi when the page loads
 function onLoadWeather() {
   if(localStorage.getItem('currentCity') == 0){
-    fetchWeatherData('auto:ip');
+    fetchWeatherData('auto:ip')
   }
   else{
     fetchWeatherData(localStorage.getItem('currentCity'));
