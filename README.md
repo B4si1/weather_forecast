@@ -11,6 +11,8 @@
 ## Overview
 Basil Weather App is a small yet powerful project designed to provide users with a seamless and visually appealing weather forecasting experience. Accessible [here (stable version)](https://basilweatherforecast.netlify.app/), this web-based application offers a range of features and optimizations to enhance the user experience.
 
+![Thumbnail](https://basilweatherforecast.netlify.app/images/thumb.jpg)
+
 ## 🍀 Features and Optimizations 🍀
 1. **Day/Night Mode**
    - The app intelligently adjusts its appearance based on the time of day of the searched local. 
