@@ -8,6 +8,7 @@ const alertInfo = document.getElementById('alertInfo');
 const airQuality = document.getElementById('airQuality');
 const errorPopup = document.getElementById('popup');
 const fadePopup = document.getElementById('fade');
+const infoElement = document.getElementById('infoElement');
 // Get references to the DOM elements with IDs 'sun' and 'moon'
 const sun = document.getElementById('sun');
 const moon = document.getElementById('moon');
@@ -32,8 +33,17 @@ function renderWeather(data) {
   const forecast = data.forecast;
   const alerts = data.alerts.alert;
   const trimTime = data.location.localtime.slice(10);
+  
+  // console.log(location);
+  // console.log(currentWeather);
+  // console.log(currentWeather.last_updated);
+  // console.log(forecast);
+  // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
+  // console.log(typeof(forecast.forecastday[1].date))
+  // console.log(alerts);
+  // console.log(data.alerts.alert);
 
-  //  console.log(data.alerts.alert);
+  infoElement.innerHTML = `Last Update : ${currentWeather.last_updated}`
 
   if (alerts.length == 0){
     // console.log('no alerts');
@@ -45,12 +55,6 @@ function renderWeather(data) {
     alertInfo.innerHTML = alerts.alert[0].headline;
   }
 
-  // console.log(forecast);
-  // console.log(alerts);
-  // console.log(forecast.forecastday[0].day.daily_chance_of_rain);
-  // console.log(typeof(forecast.forecastday[1].date))
-
- 
   const forecastContainer = document.getElementById("forecast");
   for(let i = 0; i < forecast.forecastday.length; i++){
     const dayContainer = document.getElementById(`day-${i + 1}`);
@@ -105,13 +109,14 @@ function renderWeather(data) {
   // Generating HTML content for weather information
   const weatherHTML = `
     <div class="summary-fill">
-      <h2>${truncateText(location.name, 10)}, <span class="countryText">${truncateText(location.country, 10)}<span></h2>
+      <h2>${location.name}, <span class="countryText">${truncateText(location.country, 10)}<span></h2>
       <p class="p-sml">${trimTime}</p> 
       <h2>${currentWeather.temp_c}°C / ${currentWeather.temp_f}°F </h2>
+      <div class="p-update">Last Update: ${currentWeather.last_updated}</div>
     </div>
     <div class="summary">
       <div class="summary1">
-        <p class="forcast-img"><strong> ${currentWeather.condition.text} </strong></p>  
+        <p class="forcast-img"><strong> ${truncateText(currentWeather.condition.text, 15)} </strong></p>  
         <p><strong>Feels like:</strong> ${currentWeather.feelslike_c}°C / ${currentWeather.feelslike_f}°F</p>
         <p><strong>Humidity:</strong> ${currentWeather.humidity}%</p>
         <p><strong>Wind:  </strong>${currentWeather.wind_mph}mph | ${currentWeather.wind_dir} ${currentWeather.wind_degree}° </p>
@@ -126,7 +131,7 @@ function renderWeather(data) {
     `;
 
 
-  const airQualityInfo = `<strong>Air Quality :</strong>  ${airCondition(currentWeather.air_quality.pm2_5)} (${currentWeather.air_quality.pm2_5} PM2.5)`
+  const airQualityInfo = `<strong>Air Quality :</strong>  ${airCondition(currentWeather.air_quality.pm2_5)} (${currentWeather.air_quality.pm2_5} <small>PM2.5</small>)`
 
   airQuality.innerHTML = airQualityInfo;
   // Setting the generated HTML to the innerHTML of a DOM element with id 'weatherInfo'
@@ -327,7 +332,6 @@ document.getElementById('cityOutput').addEventListener('click', function (event)
   clearSuggestions();
 });
 
-
 // INITIAL CALLS
 // Function to fetch and render weather data for Nairobi when the page loads
 function onLoadWeather() {
@@ -340,7 +344,12 @@ function onLoadWeather() {
   
 }
 
-// Initialize the weather display for Nairobi when the page loads
+// Initialize the weather display when page loads
 onLoadWeather();
 // INITIAL CALLS
 
+// Reload or Update function
+// setInterval(function() {
+//   location.reload();
+// }, 30000);
+// SAVE API CALLS

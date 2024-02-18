@@ -16,7 +16,6 @@ body {
   background: linear-gradient(to bottom, var(--main-bg-color), var(--secondary-bg-color)) fixed;
   height: 100%;
   margin: 0;
-  
 }
 
 /* Container Styles */
@@ -43,6 +42,13 @@ body {
 
 .p-sml {
   font-size: 17px;
+}
+.p-update{
+  font-size: 10px;
+  text-align: end;
+  margin-right: 5px;
+  margin-bottom: -5px;
+  color: rgb(109, 109, 109);
 }
 
 strong {
@@ -288,4 +294,15 @@ input:focus {
 .summary-fill {
   background: linear-gradient(transparent, hsla(0, 0%, 100%, 0.342));
   padding-bottom: 5px;
+}
+
+
+#infoElement {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(107, 107, 107);
+  border-radius: 3px;
+  color: white; 
+  padding: 5px; 
 }
