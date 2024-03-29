@@ -1,4 +1,5 @@
 // UTILITIES AND HELPER FUNCTIONS 
+export const apiKey = '9d52832445de4d18b0c152812240202';
 // Function to clear suggestions
 export function clearSuggestions() {
     document.getElementById('cityInput').value = '';

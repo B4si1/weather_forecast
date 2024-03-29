@@ -1,5 +1,5 @@
 // API key for accessing weather data
-const apiKey = '9d52832445de4d18b0c152812240202';
+
 
 // DOM elements for user input, weather information, and error handling
 const cityInput = document.getElementById('cityInput');
@@ -18,6 +18,7 @@ const moon = document.getElementById('moon');
 let focusedSuggestionIndex = -1;
 
 // Importing data from external files
+import { apiKey } from "../data/utils.js";
 import palettes from "../data/weathers.js";
 import commonCities from "../data/cities.js";
 import {clearSuggestions} from "../data/utils.js";

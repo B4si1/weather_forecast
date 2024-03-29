@@ -366,7 +366,7 @@ input:focus {
   
 }
 .forecast-day p.underline{
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.445);
   margin-bottom: 2px;
 }
 
