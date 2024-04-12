@@ -1,6 +1,3 @@
-// API key for accessing weather data
-
-
 // DOM elements for user input, weather information, and error handling
 const cityInput = document.getElementById('cityInput');
 const weatherInfo = document.getElementById('weatherInfo');
@@ -141,7 +138,7 @@ function renderWeather(data) {
     // Check if it's daytime and the current weather condition matches the day palette
       if (isDay() && (formatString(palettes[i].day) === formatString(currentWeather.condition.text) || formatString(palettes[i].night) === formatString(currentWeather.condition.text))) {
         // Set the background gradient for the body based on the day palette
-        document.body.style.backgroundImage = `linear-gradient(whitesmoke, ${palettes[i].color2})`;
+        document.body.style.backgroundImage = `linear-gradient(aliceblue, ${palettes[i].color2})`;
         // Exit the loop
         break;
       } 
