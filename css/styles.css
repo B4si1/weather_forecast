@@ -51,14 +51,15 @@ h1{
 
 .p-sml {
   font-size: 17px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 10px;
+  margin-bottom: -10px;
 }
 
 .p-update{
   font-size: 10px;
   text-align: end;
   margin-right: 5px;
+  /* margin-top: 10px; */
   margin-bottom: -5px;
   color: white;
 }
