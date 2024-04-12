@@ -11,6 +11,10 @@ const infoElement = document.getElementById('infoElement');
 const sun = document.getElementById('sun');
 const moon = document.getElementById('moon');
 
+const lang = document.all[0].lang;
+console.log(lang)
+
+
 // Variable to keep track of the currently focused suggestion
 let focusedSuggestionIndex = -1;
 
@@ -194,7 +198,7 @@ function getWeather() {
 // Function to fetch weather data from the API for a given city
 function fetchWeatherData(city) {
   
-  const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=yes&alerts=yes&tides=yes`;
+  const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=yes&alerts=yes&tides=yes&lang=${lang}`;
   
   localStorage.setItem('currentCity', city);
   
@@ -351,8 +355,8 @@ document.getElementById('cityOutput').addEventListener('click', function (event)
 // INITIAL CALLS
 // Function to fetch and render weather data for Nairobi when the page loads
 function onLoadWeather() {
-  if(localStorage.getItem('currentCity') == 0){
-    fetchWeatherData('London')
+  if(!localStorage.getItem('currentCity')){
+    fetchWeatherData('auto:ip')
   }
   else{
     fetchWeatherData(localStorage.getItem('currentCity'));
